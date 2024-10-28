@@ -1,13 +1,11 @@
 <script setup>
 import { ref } from 'vue';
-import { useRouter, RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import { createAccount } from '@/services/api.js';
-import api from '@/services/api.js';
 import FormContaner from '@/components/form/FormContainer.vue';
 import Form from '@/components/form/Form.vue';
 import TextInput from '@/components/form/TextInput.vue';
 
-const router = useRouter()
 const requestError = ref("");
 const accountCreated = ref(false);
 const formErrors = ref({});
@@ -85,7 +83,6 @@ const handleRegister = async (data) => {
                     </div>
                 </div>
             </FormContaner>
-
           </div>
         </section>
       </main>

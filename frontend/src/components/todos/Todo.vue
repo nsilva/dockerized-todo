@@ -35,24 +35,18 @@ const handleAddSubtask = (todo) => {
 };
 
 const handleSubtaskUpdate = (data) => {
-    
     emit('todoUpdated', data);
 }
 
 </script>
 
 <template>
-
     <div class="todo-container" :class="{ 'py-2 my-2 px-4' : todo?.parent_id == null}">
         <div :class="{ 'ml-2 !text-lg' : todo?.parent_id != null}" class="todo-box">
             <div class="todo-title" :class="{ 'bg-gray-200' : showOptions}">{{ todo.title }}</div>
 
-
-
-
             <div class="todo-options">
                 <div class="todo-options-icons" >
-                    
                     <div v-if="todo.status == 'not started'" class="inline">
                         <Icon icon="material-symbols:not-started" class="status-icon"></Icon>
                     </div>
@@ -64,7 +58,6 @@ const handleSubtaskUpdate = (data) => {
                     <div v-if="todo.status == 'complete'" class="inline text-green-500">
                         <Icon icon="pajamas:todo-done" class="status-icon"></Icon>
                     </div>
-
                     <a @click="toggleOptions" :class="{ 'text-amber-700' : showOptions}">
                         <Icon icon="quill:cog" class="options-trigger"></Icon>
                     </a>
@@ -72,28 +65,23 @@ const handleSubtaskUpdate = (data) => {
 
                 <div v-if="showOptions" class="options-box" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                     <div class="py-1" role="none">
-                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                    <div class="options-title" role="menuitem" tabindex="-1" id="menu-item-0">Set as:</div>
-                    
-                    <a href="#" class="text-gray-500 status-option" role="menuitem" tabindex="-1" id="menu-item-1" @click="handleUpdateStatus('not started')">
-                        <Icon icon="material-symbols:not-started" class="status-icon"></Icon><small>Not Started</small>
-                    </a>
+                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                        <div class="options-title" role="menuitem" tabindex="-1" id="menu-item-0">Set as:</div>
+                        
+                        <a href="#" class="text-gray-500 status-option" role="menuitem" tabindex="-1" id="menu-item-1" @click="handleUpdateStatus('not started')">
+                            <Icon icon="material-symbols:not-started" class="status-icon"></Icon><small>Not Started</small>
+                        </a>
 
-                    <a href="#" class="text-yellow-500 status-option" role="menuitem" tabindex="-1" id="menu-item-2" @click="handleUpdateStatus('in progress')">
-                        <Icon icon="carbon:in-progress" class="status-icon"></Icon><small>In Progress</small>
-                    </a>
+                        <a href="#" class="text-yellow-500 status-option" role="menuitem" tabindex="-1" id="menu-item-2" @click="handleUpdateStatus('in progress')">
+                            <Icon icon="carbon:in-progress" class="status-icon"></Icon><small>In Progress</small>
+                        </a>
 
-                    <a href="#" class="text-green-500 status-option" role="menuitem" tabindex="-1" id="menu-item-2" @click="handleUpdateStatus('complete')">
-                        <Icon icon="pajamas:todo-done" class="status-icon"></Icon><small>Complete</small>
-                    </a>
-                    
+                        <a href="#" class="text-green-500 status-option" role="menuitem" tabindex="-1" id="menu-item-2" @click="handleUpdateStatus('complete')">
+                            <Icon icon="pajamas:todo-done" class="status-icon"></Icon><small>Complete</small>
+                        </a>
                     </div>
                 </div>
             </div>
-
-
-
-
 
         </div>
 
@@ -155,14 +143,5 @@ const handleSubtaskUpdate = (data) => {
         }
     }
 }
-
-
-
-
-
-
-
-
-
 </style>
   

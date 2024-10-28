@@ -22,7 +22,6 @@ const handleLogin = async (data) => {
     const response = await login(data);
     
     if (response.status == 200) {
-        console.log("sucecsss")
         const accessToken = response.data.data.access_token;
         localStorage.setItem('accessToken', accessToken);
         router.push('/todos');
@@ -66,10 +65,8 @@ const handleLogin = async (data) => {
                     <div class="w-1/2">
                         <RouterLink to="/register">Create account</RouterLink>
                     </div>
-                    
                 </div>
             </FormContaner>
-
           </div>
         </section>
       </main>

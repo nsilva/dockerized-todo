@@ -76,7 +76,7 @@ The Laravel backend leverages several features from the framework
  To cover theses cases, a model observer was used to observe the `updated` event
 - Policies: A policy has been used to determine if a user can view or edit a task
 - Sanctum: The authentication is done using Sanctum to issue access token and as middleware to validate the token in each request
-- Scheduler/Command: A command is in charge of fetching the users with pending taks for more than 24 hours, along with the number of pendings tasks. The command is scheduled to execute every 5 minutes for testing purposes.
+- Scheduler/Command: A command is in charge of fetching the users with pending taks for more than 24 hours, along with the number of pendings tasks. The command is scheduled to execute every 5 minutes for testing purposes. To see the email notifications, you can manually update a to-do record in progress and make the field `in_progress_since` older than 24 hours. You should receive an email in the email server(`http://localhost:8004`) in 5 minutes.
 - Relationships: Give that tasks and subtasks have the same properties, the `Todo` model was set to have a relationship with itself, so that if the `parent_id` is null, it is a parent task, otherwise it is a subtask.
 - Enums: To handle the different possible statuses for a task, the newly introduced PHP `enum` structure has been used to have more flexibility if a new status is introduced.
 - Testing: Basic test coverage was created to test the API request responses. To run the existing tests, you need to:
@@ -88,8 +88,10 @@ The Laravel backend leverages several features from the framework
 The frontend application handles the user login, account creation and to-dos creation/update. The implementation uses some basics concepts of the framework:
 - Component reusability: It is clearly seen in the To-Dos screen, where the `Todo` component renders copies of itself if the task has subtasks.
 - Routing: To render the different screens, the Vue router is used for redirection
-- Testing: Basic tests were created using Vitest. This is just a demonstration on testing and far from being a proper test coverage.
 - Emitters: Severals emitters are used across the application to handle the different event caused by adding/updating tasks.
+- Testing: Basic tests were created using Vitest. This is just a demonstration on testing and far from being a proper test coverage. To tun the test, follow theses steps:
+1. Access the frontend container, running `./access-frontend.sh` from the project's root
+2. Execute the tests running `npm run test` from witin the container
 
 ## Running tests
 

@@ -26,7 +26,7 @@ This is more than just the typical to-do app. This app demonstrates the use of s
 - Docker Compose
 
 ## How to Run this project
-To run the project run `up.sh`, this will start the Docker container. The UI will be available at `localhost:8001`, additionally, the MySQL database can be accessed at `localhost:8001` and the email inbox, where the system emails will land will be located at `localhost:8004`.
+To run the project execute `./up.sh` from the project's root folder, this will start the Docker container. The UI will be available at `localhost:8001`, additionally, PHPMyAdmin can be accessed at `localhost:8003` and the email inbox, where the system emails will land will be located at `localhost:8004`.
 
 For convenience, the application includes a seeder that creates a user with some to-dos. You can access with the following credentials:
 Email: test@example.com

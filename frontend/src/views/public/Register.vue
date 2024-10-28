@@ -54,7 +54,7 @@ const handleRegister = async (data) => {
                     <p>Go to the <RouterLink to="/">sing in</RouterLink> screen to start.</p>
                 </div>
 
-                <Form :initialFormData="formData" @formSubmitted="handleRegister" v-if="!accountCreated">
+                <Form :initialFormData="formData" @form-submitted="handleRegister" v-if="!accountCreated">
                     <div class="text-input-container">
                         <TextInput v-model="formData.name" label="Name" type="text" :disabled="formData.disabled" :error="formErrors?.name"/>
                     </div>

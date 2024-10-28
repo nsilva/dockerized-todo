@@ -62,10 +62,10 @@ const handleUpdateTodo = async (data) => {
 
 <template>
     <div>
-        <TodoCreator @todoCreated="handleAddTodo" />
+        <TodoCreator @todo-created="handleAddTodo" />
         <ul>
             <li v-for="todo in todos" :key="todo.id">
-                <Todo :todo="todo" @todoCreated="handleAddTodo" @todoUpdated="handleUpdateTodo"/>
+                <Todo :todo="todo" @todo-created="handleAddTodo" @todo-updated="handleUpdateTodo"/>
             </li>
         </ul>
     </div>

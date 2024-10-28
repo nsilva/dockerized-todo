@@ -44,7 +44,7 @@ const handleLogin = async (data) => {
                     <p v-if="errorMessage" class="form-error-message">{{ errorMessage }}</p>
                 </div>
 
-                <Form :initialFormData="formData" @formSubmitted="handleLogin">
+                <Form :initialFormData="formData" @form-submitted="handleLogin">
                     <div class="text-input-container">
                         <TextInput v-model="formData.email" label="Email" type="text" :disabled="formData.disabled"/>
                     </div>

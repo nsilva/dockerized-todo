@@ -31,7 +31,7 @@ RUN a2enmod rewrite
 #COPY composer.json ./
 
 # Install project dependencies
-#RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader
 
 # Copy the entire project to the working directory
 COPY ./storage ./storage

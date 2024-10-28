@@ -30,9 +30,6 @@ services:
 
   queue-worker:
     container_name: queue
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -42,9 +39,6 @@ services:
 
   scheduler:
     container_name: scheduler
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis

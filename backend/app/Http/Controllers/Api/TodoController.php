@@ -30,8 +30,6 @@ class TodoController extends Controller
     public function store(CreateTodoRequest $request, CreateTodo $createAction)
     {
         return $createAction->create($request);
-
-        return response()->json($todo, 201);
     }
 
     /**

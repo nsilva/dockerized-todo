@@ -28,13 +28,10 @@ This is more than just the typical to-do app. This app demonstrates the use of s
 - Docker
 - Docker Compose
 
-<<<<<<< HEAD
 ## How to Run this project
 To run the project execute `./up.sh` from the project's root folder, this will start the Docker container. The UI will be available at `localhost:8001`, additionally, PHPMyAdmin can be accessed at `localhost:8003` and the email inbox, where the system emails will land will be located at `localhost:8004`.
 
-=======
 ## How to use the application
->>>>>>> main
 For convenience, the application includes a seeder that creates a user with some to-dos. You can access with the following credentials:
 Email: test@example.com
 Password: password123
@@ -114,14 +111,8 @@ There are several opportunities to improve this application, but for the puspose
 - Filter tasks by status
 - Remove tasks marked as completed from the main list
 - Add an email confirmation message upon registration
-<<<<<<< HEAD
 - The .env file should not be stored in the repo but as this is a test, it was kept there for easy setup
 - The UI does not use a store, the application is not big enough to justify the store use although it can very well be added
 - It could be beneficial to use TypeScript 
-=======
 - Although the API side is really small, it could include API documentation
-- The CSS styling could be more organized but I wanted to experiemnt with the different ways to use Tailwind
-
->>>>>>> main
-
-
+- The CSS styling could be more organized

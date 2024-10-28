@@ -25,12 +25,33 @@ This is more than just the typical to-do app. This app demostrate the use of sev
 - Docker
 - Docker Compose
 
-## How to Run this project
-To run the project run `up.sh`, this will start the Docker container. The UI will be availeble at `localhost:8001`, addtionally, the MySQL database can be accessed at `localhost:8001` and the email inbox, where the system emails will land will be located at `localhost:8004`.
-
+## How to use the application
 For convenience, the application includes a seeder that creates a user with some to-dos. You can access with the following credentials:
 Email: test@example.com
 Password: password123
+
+After logging in, you can create to-dos by entering the tasl in the main input and hit enter
+![image](https://github.com/nsilva/dockerized-todo/assets/1390818/28358c88-db40-4568-8099-d14466c83b19)
+
+Once the new to-do is created, it will be shown in the list below the main input, with the newest at the top
+![image](https://github.com/nsilva/dockerized-todo/assets/1390818/831facb1-72df-4123-bbb3-5d9afc7b82e9)
+
+The to-do box includes a "Add subtask" link, when clicked, it will display a new input to add subtask under the selected to-do. The subtasks will be displayed in the same box as the parent to-do
+
+![image](https://github.com/nsilva/dockerized-todo/assets/1390818/fb31130c-d334-4ae2-92c7-a61016cfa202)
+
+To the right of each entry, you can see two icons, the first indicates the status if the to-do, and the cog displays the changing status options when clicked.
+
+![image](https://github.com/nsilva/dockerized-todo/assets/1390818/82f9591e-f15d-4015-9794-59dc85462272)
+
+Please note the side effects of changing status:
+- If a parent task is set as complete, all the subtasks should be set as complete
+- If a subtask is set as in progress and the parent to-do is not in progress, it will be forced to be in progress
+  
+## How to Run this project
+To run the project run `up.sh`, this will start the Docker container. The UI will be availeble at `localhost:8001`, addtionally, the MySQL database can be accessed at `localhost:8001` and the email inbox, where the system emails will land will be located at `localhost:8004`.
+
+
 
 ## Infrastructure(Docker)
 The project infrastrcuture is build upon Docker with Docker Compose. At the root folder you can find the `docker-compose.yml` file. The defined containers are as follows:
@@ -82,6 +103,8 @@ There are several opportunities to imporve this application, but for the puspose
 - Filter tasks by status
 - Remove tasks marked as completed from the main list
 - Add an email confirmation message upon registration
+- Although the API side is really small, it could include API documentation
+- The CSS styling could be more organized but I wanted to experiemnt with the different ways to use Tailwind
 
 
 

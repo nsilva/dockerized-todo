@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter, RouterLink } from 'vue-router';
-import { login } from '@/services/api.js';
+import { login, validateToken } from '@/services/api.js';
 import FormContaner from '@/components/form/FormContainer.vue';
 import Form from '@/components/form/Form.vue';
 import TextInput from '@/components/form/TextInput.vue';
@@ -31,6 +31,15 @@ const handleLogin = async (data) => {
     }
 };
 
+onMounted(async () => {
+    const localStorageToken = localStorage.getItem('accessToken');
+    if (localStorageToken) {
+        const isLoggedIn = await validateToken(localStorageToken);
+        if (isLoggedIn) {
+            router.push('/todos');
+        }
+    }
+});
 </script>
 
 <template>

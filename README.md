@@ -57,7 +57,7 @@ The Laravel backend leverages several features from the framework
 - Relationships: Give that tasks and subtasks have the same properties, the `Todo` model was set to have a relationship with itself, so that if the `parent_id` is null, it is a parent task, otherwise it is a subtask.
 - Enums: To handle the different possible statuses for a task, the newly introduced PHP `enum` structure has been used to have more flexibility if a new status is introduced.
 
-Additionally, basic testing coverage was created to test the API request responses.
+Additionally, basic test coverage was created to test the API request responses.
 
 ## Frontend (Vue)
 The frontend application handles the user login, account creation and to-dos creation/update. The implementation uses some basics concepts of the framework:
@@ -82,6 +82,8 @@ There are several opportunities to improve this application, but for the puspose
 - Filter tasks by status
 - Remove tasks marked as completed from the main list
 - Add an email confirmation message upon registration
-
+- The .env file should not be stored in the repo but as this is a test, it was kept there for easy setup
+- The UI does not use a store, the application is not big enough to justify the store use although it can very well be added
+- It could be beneficial to use TypeScript 
 
 

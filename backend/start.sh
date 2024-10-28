@@ -2,6 +2,7 @@
 
 set -Eeuo pipefail
 
+echo "Installing composer dependencies..."
 composer dump-autoload \
     && composer install --optimize-autoloader --no-dev \
     && php artisan cache:clear \
@@ -9,6 +10,7 @@ composer dump-autoload \
     && php artisan view:clear
 
 # Define the available options
+echo "Starting server..."
 serve_command="php artisan serve --host=0.0.0.0"
 queue_command="php artisan queue:work --tries=3"
 

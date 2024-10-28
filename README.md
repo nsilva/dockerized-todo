@@ -1,5 +1,8 @@
 # To-Do Application
 
+## NOTES:
+- .env files where added to the repo for testing purposes. They should not be in the repor under normal conditions
+
 ## Summary
 This is more than just the typical to-do app. This app demonstrates the use of several concepts
 - Docker and Docker Compose
@@ -65,6 +68,8 @@ The frontend application handles the user login, account creation and to-dos cre
 - Routing: To render the different screens, the Vue router is used for redirection
 - Testing: Basic tests were created using Vitest. This is just a demonstration on testing and far from being a proper test coverage.
 - Emitters: Severals emitters are used across the application to handle the different event caused by adding/updating tasks.
+
+## Running tests
 
 ## Other considerations
 For the styling, I used Tailwind with nested styles. I also used Vite to create the Vue project

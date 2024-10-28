@@ -50,7 +50,7 @@ const props = defineProps({
         @input="$emit('update:modelValue', $event.target.value)"
         class="text-input"
         :disabled="disabled"
-        :class="{ 'bg-gray-200	' : disabled}" 
+        :class="{ 'bg-gray-200	': disabled }" 
         :placeholder="placeholder">
     <small v-if="error !== ''" class="text-red-700">{{ error[0] }}</small>
   </div>

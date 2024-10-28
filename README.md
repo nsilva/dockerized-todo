@@ -1,7 +1,7 @@
 # To-Do Application
 
 ## NOTES:
-- .env files where added to the repo for testing purposes. They should not be in the repor under normal conditions
+- .env files where added to the repo for testing purposes. They should not be in the repo under normal conditions.
 
 ## Summary
 This is more than just the typical to-do app. This app demonstrates the use of several concepts
@@ -16,6 +16,7 @@ This is more than just the typical to-do app. This app demonstrates the use of s
   - Relationships
   - Enums
   - Commands
+  - Testing
     
 - Vue Frontend
   - Components Reusability
@@ -29,7 +30,7 @@ This is more than just the typical to-do app. This app demonstrates the use of s
 - Docker Compose
 
 ## How to Run this project
-To run the project execute `./up.sh` from the project's root folder, this will start the Docker container. The UI will be available at `localhost:8001`, additionally, PHPMyAdmin can be accessed at `localhost:8003` and the email inbox, where the system emails will land will be located at `localhost:8004`.
+To run the project execute `./up.sh` from the project's root folder, this will start the Docker container. The UI will be available at `localhost:8001`, additionally, PHPMyAdmin can be accessed at `localhost:8003` and the email inbox, where the system emails will land will be located at `localhost:8004`. Database credentials available in the `backend/.env` file
 
 ## How to use the application
 For convenience, the application includes a seeder that creates a user with some to-dos. You can access with the following credentials:
@@ -53,11 +54,6 @@ To the right of each entry, you can see two icons, the first indicates the statu
 Please note the side effects of changing status:
 - If a parent task is set as complete, all the subtasks should be set as complete
 - If a subtask is set as in progress and the parent to-do is not in progress, it will be forced to be in progress
-  
-## How to Run this project
-To run the project run `up.sh`, this will start the Docker container. The UI will be availeble at `localhost:8001`, addtionally, the MySQL database can be accessed at `localhost:8001` and the email inbox, where the system emails will land will be located at `localhost:8004`.
-
-
 
 ## Infrastructure(Docker)
 The project infrastructure is built upon Docker with Docker Compose. At the root folder you can find the `docker-compose.yml` file. The defined containers are as follows:
@@ -83,8 +79,10 @@ The Laravel backend leverages several features from the framework
 - Scheduler/Command: A command is in charge of fetching the users with pending taks for more than 24 hours, along with the number of pendings tasks. The command is scheduled to execute every 5 minutes for testing purposes.
 - Relationships: Give that tasks and subtasks have the same properties, the `Todo` model was set to have a relationship with itself, so that if the `parent_id` is null, it is a parent task, otherwise it is a subtask.
 - Enums: To handle the different possible statuses for a task, the newly introduced PHP `enum` structure has been used to have more flexibility if a new status is introduced.
-
-Additionally, basic test coverage was created to test the API request responses.
+- Testing: Basic test coverage was created to test the API request responses. To run the existing tests, you need to:
+1. Access the backend container, running `./access-backend.sh` from the project's root
+2. Once in the backend container, install the dev dependencies running `composer install --dev`
+3. Then the test running `php artisan test` from within the backend container 
 
 ## Frontend (Vue)
 The frontend application handles the user login, account creation and to-dos creation/update. The implementation uses some basics concepts of the framework:

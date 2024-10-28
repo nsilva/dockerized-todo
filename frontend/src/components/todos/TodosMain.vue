@@ -1,14 +1,10 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { Icon } from '@iconify/vue';
+import { ref, onMounted } from 'vue';
 import Todo from '@/components/todos/Todo.vue';
 import TodoCreator from '@/components/todos/TodoCreator.vue';
 import { fetchTodos, addTodo, updateTodo, fetchTodoById } from '@/services/api.js';
 
-const router = useRouter()
 const todos = ref([]);
-const selectedTodo = ref(0);
 
 onMounted(async () => {
     todos.value = await fetchTodos();
@@ -19,8 +15,6 @@ const handleAddTodo = async (todo) => {
     if (!todo.parent_id) {
         todos.value.unshift(newTodo);
     } else {
-        let parentIdIndex = null
-
         const parentTodo = todos.value.find((item, index) => item.id == newTodo.parent_id)
 
         if (parentTodo) {
@@ -62,21 +56,17 @@ const handleUpdateTodo = async (data) => {
             affectedSubtask.status = updatedTodo.status
         }
     }
-    
 };
 
 </script>
 
 <template>
     <div>
-        
-        <TodoCreator @todoCreated="handleAddTodo" />
-        
+        <TodoCreator @todo-created="handleAddTodo" />
         <ul>
             <li v-for="todo in todos" :key="todo.id">
-                <Todo :todo="todo" @todoCreated="handleAddTodo" @todoUpdated="handleUpdateTodo"/>
+                <Todo :todo="todo" @todo-created="handleAddTodo" @todo-updated="handleUpdateTodo"/>
             </li>
-        
         </ul>
     </div>
 </template>

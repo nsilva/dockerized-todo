@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter, RouterLink } from 'vue-router';
-import { login } from '@/services/api.js';
+import { login, validateToken } from '@/services/api.js';
 import FormContaner from '@/components/form/FormContainer.vue';
 import Form from '@/components/form/Form.vue';
 import TextInput from '@/components/form/TextInput.vue';
@@ -22,7 +22,6 @@ const handleLogin = async (data) => {
     const response = await login(data);
     
     if (response.status == 200) {
-        console.log("sucecsss")
         const accessToken = response.data.data.access_token;
         localStorage.setItem('accessToken', accessToken);
         router.push('/todos');
@@ -32,6 +31,15 @@ const handleLogin = async (data) => {
     }
 };
 
+onMounted(async () => {
+    const localStorageToken = localStorage.getItem('accessToken');
+    if (localStorageToken) {
+        const isLoggedIn = await validateToken(localStorageToken);
+        if (isLoggedIn) {
+            router.push('/todos');
+        }
+    }
+});
 </script>
 
 <template>
@@ -45,7 +53,7 @@ const handleLogin = async (data) => {
                     <p v-if="errorMessage" class="form-error-message">{{ errorMessage }}</p>
                 </div>
 
-                <Form :initialFormData="formData" @formSubmitted="handleLogin">
+                <Form :initialFormData="formData" @form-submitted="handleLogin">
                     <div class="text-input-container">
                         <TextInput v-model="formData.email" label="Email" type="text" :disabled="formData.disabled"/>
                     </div>
@@ -66,10 +74,8 @@ const handleLogin = async (data) => {
                     <div class="w-1/2">
                         <RouterLink to="/register">Create account</RouterLink>
                     </div>
-                    
                 </div>
             </FormContaner>
-
           </div>
         </section>
       </main>

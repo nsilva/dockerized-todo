@@ -3,8 +3,8 @@
 
     const props = defineProps({
         initialFormData: {
-        type: Object,
-        default: () => ({}),
+          type: Object,
+          default: () => ({}),
         },
     });
 

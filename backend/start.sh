@@ -2,8 +2,8 @@
 
 set -Eeuo pipefail
 
-composer dump-autoload \
-    && composer install --optimize-autoloader --no-dev \
+composer clear-cache \
+    && composer install -v --optimize-autoloader --no-dev \
     && php artisan cache:clear \
     && php artisan config:clear \
     && php artisan view:clear

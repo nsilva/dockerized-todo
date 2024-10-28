@@ -4,35 +4,46 @@
 
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import TextInput from "@/components/form/TextInput.vue"
+import TextInput from "@/components/form/TextInput.vue";
 
-describe ('Test input tests', () => {
-    it ('should render input elements', () => {
-        const wrapper = mount(TextInput, {
-            propsData: {
-                label: '',
-                modelValue: '',
-                type: 'input'
-            },
-        })
+describe("TextInput component tests", () => {
+  it("should render input elements without a label", () => {
+    const wrapper = mount(TextInput, {
+      props: {
+        label: "",
+        modelValue: "",
+        type: "input"
+      },
+    });
 
-        expect(wrapper.find('label').exists()).toBeFalsy()
-        expect(wrapper.find('input').exists()).toBeTruthy()
+    expect(wrapper.find("label").exists()).toBeFalsy();
+    expect(wrapper.find("input").exists()).toBeTruthy();
+  });
 
-        it("emits input value when changed", async () => {
-            // Assert input value gets the new value
-            await wrapper.find("input").setValue("New Test Value");
-            expect(wrapper.props("modelValue")).toBe("New Test Value");
-        });
+  it("emits input value when changed", async () => {
+    const wrapper = mount(TextInput, {
+      props: {
+        modelValue: "",
+        type: "input"
+      },
+    });
 
-        const labelWrapper = mount(TextInput, {
-            propsData: {
-                label: 'Input lable',
-                modelValue: '',
-                type: 'input'
-            }
-        })
+    await wrapper.find("input").setValue("New Test Value");
+    
+    const emittedEvents = wrapper.emitted("update:modelValue");
+    expect(emittedEvents).toBeTruthy();
+    expect(emittedEvents[0]).toEqual(["New Test Value"]);
+  });
 
-        expect(labelWrapper.find('label').exists()).toBeTruthy()
-    })
-})
+  it("should render input elements with a label", () => {
+    const wrapper = mount(TextInput, {
+      props: {
+        label: "Input label",
+        modelValue: "",
+        type: "input"
+      },
+    });
+
+    expect(wrapper.find("label").exists()).toBeTruthy();
+  });
+});

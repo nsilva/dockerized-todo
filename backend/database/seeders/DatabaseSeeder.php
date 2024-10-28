@@ -15,29 +15,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password123')
-        ]);
-
-        Todo::create([
+        $user = User::where('email', 'test@example.com')->first();
+        if (!$user) {
+            $user = User::create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+                'password' => Hash::make('password123')
+            ]);
+        }
+        
+        Todo::firstOrCreate([
             'title' => 'Call Mike',
             'user_id' => $user->id
         ]);
 
-        $parentTodo = Todo::create([
+        $parentTodo = Todo::firstOrCreate([
             'title' => 'Buy groceries',
             'user_id' => $user->id
         ]);
 
-        Todo::create([
+        Todo::firstOrCreate([
             'title' => 'Buy milk',
             'parent_id' => $parentTodo->id,
             'user_id' => $user->id
         ]);
 
-        Todo::create([
+        Todo::firstOrCreate([
             'title' => 'Buy avocado',
             'parent_id' => $parentTodo->id,
             'user_id' => $user->id
